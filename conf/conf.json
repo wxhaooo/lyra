@@ -1,0 +1,26 @@
+{
+    "frame_time": 0.04,
+    "frame_steps": 8,
+    "end_time": 15,
+    "cloths": [{
+        "mesh": "meshes/squarerefined.obj",
+        "transform": {"translate": [-0.5, -1, 0.5]},
+        "materials": [{"data": "materials/gray-interlock.json",
+            "damping": 0.03}],
+        "texture":"textures/rainbow.jpg"
+    }],
+    "handles": [{"nodes": [2,3], "motion":0,"end_time":10}],
+    "motions": [[
+        {"time": 1, "transform": {"rotate": [0,0,0,1]}},
+        {"time": 2, "transform": {"rotate": [-45,0,0,1]}},
+        {"time": 2.5, "transform": {"rotate": [-90,0,0,1]}},
+        {"time": 3, "transform": {"rotate": [-135,0,0,1]}},
+        {"time": 3.5, "transform": {"rotate": [-180,0,0,1]}},
+        {"time": 4, "transform": {"rotate": [-225,0,0,1]}},
+        {"time": 4.5, "transform": {"rotate": [-270,0,0,1]}},
+        {"time": 5, "transform": {"rotate": [-315,0,0,1]}},
+        {"time": 6, "transform": {"rotate": [-360,0,0,1]}}
+    ]],
+    "gravity": [0, 0, -9.8]
+    //"wind":{"density":1,"velocity":[0,2,0],"drag":1}
+}
