@@ -1,3 +1,5 @@
+[TOC]
+
 # LYRA
 
 ## Attention
@@ -93,6 +95,26 @@ the configration file. Configration file follow simple json format and provide f
 }
 
 ```
+
+## Result ScreenShot
+
+![thin shell without texture](./img/1.png)
+
+![thin shell with texture](./img/2.png)
+
+## Code Hierarchy
+
+Hierarchy of lyra is simple. The program is divided into two parts: `Render` which visualize simulation results and `Simulator` which simulate
+unstructed mesh data by FEM and FDM. `Render` is simple OpenGL wrapper includes necessary visualized components: __camera__,__data buffer__,__window handle__, __shader__ and __texture handle__ etc.Some computer graphic knowledge is necessary for having a good grasp of `Render`.
+
+Except packaging configuration file parser, `Simulator` implements simulation core of lyra in `physic.hpp` and `physic.cpp`, specially, `stretching_force` and `bending_force` functions, for every finite element in mesh, both of functions calculate small stiffness matrix and combine them into a large one. 
+next, in `ObtainImplicitEquation`, `Simulator` solve large linear system using wrappered mature linear system solver. This core loop implement in
+`PhysicStep` which is a member function of `Simulator`. 
+
+## Acknowledgement
+
+Although lyra is a simple thin shell simulator far too from praticle apllication, It is not a easy task to implementing it from scratch using C++. we draw lessons from some excellent open source code such as [opencloth](https://github.com/mmmovania/opencloth), [Argus](https://github.com/lijieumn/argus-distribution) etc. For solving linear system, we reuse packaging eigen solver and fundamental data structure(vector,matrix and transformation etc) from [Argus](https://github.com/lijieumn/argus-distribution).For thin shell motion parser we reuse motion parser from [opencloth](https://github.com/mmmovania/opencloth).
+
 
 
 
