@@ -1,14 +1,11 @@
-[TOC]
 
-# LYRA
+# Lyra: A Thin Shell Simulator with FEM and FDM
 
-## Attention
-
-__lyra is research project in our lab. Please do not distribute any source code in website.__
+You can know how to compile and use lyra in the documentation. For evaluating our method, please see `Report.pdf` and `Manuscript_Appendix.pdf` in root dictionary. For implementation, `include` fold include header and `src` include source code and `src/main.cpp` is entry for lyra.
 
 ## Introduction
 
-lyra is thin shell simulator name we give our program which solve PDE of deformable object by Finite Element Method (FEM) in space and Implicit Finite Difference Method (FDM) in time. Lyra provide large time step physical simulation by backward Euler. For evaluating internal force, specially, stretch force and shear force in plane and bending force out of plane, FEM is necessary numerical tool. Moreover, lyra provide simple external force implementation such as gravity, wind and point group constraint for generating interesting results. Unfortunately, robust thin shell simulator with collision dectection and response is a hard and burdensome task, we don't implement those important and impressive traits in the simple simulator.
+lyra is thin shell simulator name we give our program which solve PDE of deformable object by Finite Element Method (FEM) in space and Implicit Finite Difference Method (FDM) in time. Lyra provide large time step physical simulation by backward Euler. For evaluating internal force, specially, stretch force and shear force in plane and bending force out of plane, FEM is necessary numerical tool. Moreover, lyra provide simple external force implementation such as gravity, wind and point group constraint for generating interesting results. Unfortunately, robust thin shell simulator with collision detection and response is a hard and burdensome task, we don't implement those important and impressive traits in the simple simulator.
 
 ## Dependencies
 
@@ -25,9 +22,43 @@ lyra is thin shell simulator name we give our program which solve PDE of deforma
 
 __ATTENTIONS: you must use compiler supporting C++ 14, such as visual studio 2015 or g++ 3.5 above.__ For now, we successfully compile and run lyra in __`visual studio 2019 community`__ and __`Ubuntu 18.04 LTS`__.
 
+### MSVC
 
+We code lyra with `visual studio 2019 community` , so compiling and run lyra in window is easy thing. we ommit concrete operator in the README.md.
 
-We code lyra with `visual studio 2019 community` and provide a simple batch processing script `AutoRun.sh` in root dictionary for install dependencies and run demo in linux. Moreover, you can run program `./lyra conf/conf.json` in root dictionary. When lyra is running, you can adjust
+### Linux
+
+To compile lyra in linux, you need use apt-get to install dependencies below:
+
+__ATTENTION:__ __If you encount 404 error when install dependencies__, please use `sudo apt-get update` to update source and rerun commands. Source mirror is important, we successed to install all of dependencies in __Tsinghua Open Source Mirror__.
+
+```bash
+sudo apt-get update # optional
+
+sudo apt-get install build-essential
+sudo apt-get install cmake  # version 3.0 above
+sudo apt-get install libpng-dev
+sudo apt-get install libboost-dev
+sudo apt-get install libboost-filesystem-dev
+sudo apt-get install libboost-serialization-dev
+sudo apt-get install libeigen3-dev
+sudo apt-get install libglew-dev
+sudo apt-get install libglfw3-dev
+```
+
+and use cmake to configure in __root dictionary__ of lyra:
+
+```bash
+cmake .
+```
+
+and then use make to compile lyra:
+
+```bash
+make -j16
+```
+
+When compile achieve, you can run program `./lyra conf/conf.json` in root dictionary. While lyra is running, you can adjust
 camera, Concrately,
 
 * `W` __move camera forward__
@@ -36,6 +67,8 @@ camera, Concrately,
 * `D` __move camera right__
 * `ESC` __exit lyra__
 * `Long press the left mouse button and move` __adjust camera direction__
+
+
 
 ## Usage
 
@@ -101,9 +134,12 @@ the configration file. Configration file follow simple json format and provide s
 
 ## Result ScreenShot
 
-![thin shell without texture](./img/1.png)
+![thin shell without texture](./img/2.png)
+<center>Thin Shell Simulation Visualization Rendered by OpenGL(real-time)</center>
 
-![thin shell with texture](./img/2.png)
+![thin shell with texture](./img/render-results.png)
+<center>Thin Shell Simulation Visualization Rendered by Houdini(offline)</center>
+
 
 ## Code Hierarchy
 
